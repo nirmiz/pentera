@@ -1,0 +1,26 @@
+
+services:
+  python-server:
+    build: ./python-server
+    container_name: python-server
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - pen-network
+    restart: unless-stopped
+
+  ssh-server:
+    build: ./ssh-server
+    container_name: ssh-server
+    ports:
+      - "2222:22"
+    networks:
+      - pen-network
+    restart: unless-stopped
+    depends_on:
+      - python-server
+
+networks:
+  pen-network:
+    driver: bridge
+
