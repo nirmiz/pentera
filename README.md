@@ -18,6 +18,7 @@ curl python-server:5050
 View logs:
 ```
 docker logs python-server
+or
 cat logs/access.log
 ```
 
